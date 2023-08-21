@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Higher Lower Game</title>
+</head>
+<body>
+	
+	<form action="HigherLowerGame" method="post" name="guessForm">
+		<label>Guess the Number:</label><br><br>
+		<input type="number" id="highLow" name="highLow" required="true">
+		<input type="submit" value="CHECK"><br><br>
+		<label>Computer's Response: </label>
+		<p><span th:text="${feedback}">This is gonna get replaced</span></p>
+	</form>
+</body>
+</html>
