@@ -1,0 +1,63 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notice Board</title>
+</head>
+<style>
+
+    .addNotice{
+        text-align: center;
+    }
+    .first{
+        float: left;
+        padding-left: 10%;
+    }
+    .second{
+        float: left;
+        padding-left: 35%;
+    }
+    .third{
+        float: right;
+        padding-right: 10%;
+    }
+</style>
+<body>
+
+    <div class="addNotice">
+        <h2>Notice Board</h2>
+        <h4>Read & Add Notices...</h4><br>
+        
+        <form action="NoticeBoardServlet" method="post">
+            <label>Heading: </label>
+            <input type="text" name="heading"><br>
+            <label>Content: </label>
+            <input type="text" name="content"><br>
+            <label>Contact:</label>
+            <input type="text" name="contact"><br><br>
+            <input type="submit" name="submit" value="ADD">
+        </form>
+    </div>
+
+    <br>
+    <div class="display">
+
+        <div class="first">
+            <h4>heading: <p><span th:text="${heading1}">This is gonna get replaced</span></p></h4>
+            <h4>content: <p><span th:text="${content1}">This is gonna get replaced</span></p></h4>
+            <h4>contact: <p><span th:text="${contact1}">This is gonna get replaced</span></p></h4>
+        </div>
+        <div class="second">
+            <h4>heading: <p><span th:text="${heading2}">This is gonna get replaced</span></p></h4>
+            <h4>content: <p><span th:text="${content2}">This is gonna get replaced</span></p></h4>
+            <h4>contact: <p><span th:text="${contact2}">This is gonna get replaced</span></p></h4>
+        </div>
+        <div class="third">
+            <h4>heading: <p><span th:text="${heading3}">This is gonna get replaced</span></p></h4>
+            <h4>content: <p><span th:text="${content3}">This is gonna get replaced</span></p></h4>
+            <h4>contact: <p><span th:text="${contact3}">This is gonna get replaced</span></p></h4>
+        </div>
+    </div>
+
+</body>
+</html>

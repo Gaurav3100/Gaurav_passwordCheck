@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Odometer</title>
+</head>
+<body>
+	
+	<h3>* Check odometer Values *</h3>
+	
+	<h4>Current Value is 123!</h4>
+	
+	<form action="Odometer" method="post">
+		<label>Set Odometer Digits: </label>
+		<input type="text" name="digit" required="true">
+		<input type="submit" value="SET_DIGIT" name="setValue"><br>
+		
+		<input type="submit" value="PREV-VALUE" name="btn">
+		<p><span th:text="${prevValue}">PrevValue</span></p>
+		
+		<p><span th:text="${reset}">RESET</span></p>
+		
+		<p><span th:text="${nextValue}">NextValue</span></p>
+		<input type="submit" value="NEXT-VALUE" name="btn"><br><br>
+		<input type="submit" value="RESET" name="btn">
+	</form>
+	
+</body>
+</html>

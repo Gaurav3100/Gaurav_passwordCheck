@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Mangatha Game</title>
+
+</head>
+
+ 
+
+<style>
+
+ 
+
+    .selection{
+
+        text-align: center;
+
+    }
+
+    .shuffle{
+
+        text-align: center;
+
+    }
+
+    .displayCard{
+
+        text-align: center;
+
+    }
+
+    body{
+
+        padding-bottom: 30%;
+        background-color: #FAF1E4;
+
+    }
+
+    .Out{
+
+            color: #000000;
+
+            background-color: #ee588d;
+
+            font-size: 28px;
+
+            border: 2px solid #000205;
+
+            padding: 40px 30px;
+
+            cursor: pointer;
+
+            width: 8%;
+
+            float: right;
+
+            margin-right: 30%;
+
+       
+
+    }
+
+    .In{
+
+        color: #000000;
+
+            background-color: #ee588d;
+
+            font-size: 28px;
+
+            border: 2px solid #000205;
+
+            padding: 40px 30px;
+
+            cursor: pointer;
+
+            float: left;
+
+            width: 8%;
+
+            margin-left: 30%;
+
+    }
+
+    .deckCard{
+
+        margin-bottom: 4%;
+
+    }
+
+    .reset{
+
+        height: 100%;
+
+    }
+
+ 
+
+    button {
+
+            color: #000000;
+
+            background-color: #ee588d;
+
+            font-size: 28px;
+
+            border: 2px solid #000205;
+
+            padding: 80px 40px;
+
+            cursor: pointer
+
+        }
+
+        button:hover {
+
+            color: #000205;
+
+            background-color: #f08484;
+
+        }
+        input[class=deck]{
+			 color: #000000;
+
+            background-color: #ee588d;
+
+            font-size: 28px;
+
+            border: 2px solid #000205;
+
+            padding: 50px 25px;
+
+            cursor: pointer;
+
+            width: 125px;
+            
+            height: 200px;
+
+		}
+	</style>
+
+<body>
+
+    <div class="selection">
+
+        <h2>Welcome to Mangatha Game!</h2><br>
+
+	<form method="post" action="">
+        <label for=""><b>Player 1: </b></label>
+		<input type="text" name="bet1" class="bet1">
+		<input type="text" name="card1" class="card1">
+		<select name="inOut1" class="inOut1">
+		  <option value="in1">in</option>
+		  <option value="out1">out</option>
+		</select>
+		<br><br>
+        <label for=""><b>Player 2: </b></label>
+		<input type="text" name="bet2" class="bet2">
+		<input type="text" name="card2" class="card2">
+		<select name="inOut2" class="inOut2">
+		  <option value="in2">in</option>
+		  <option value="out2">out</option>
+		</select>
+		<br><br>
+		<input type="submit" name="action" value="Submit">
+		
+		<input type="submit" name="reset" value="reset">
+	</form>
+    <br><br>
+
+</div>
+	<div class="displayCard">
+		<form method="post" action="">
+
+            <div th:if="${shouldDisableDeck} == true">
+
+            <input type="submit" name="Deck" value="Deck" class="deck" disabled>
+
+            </div>
+
+            <div th:if="${shouldDisableDeck} == false">
+
+            <input type="submit" name="Deck" value="Deck" class="deck">
+
+            </div>
+		</form>
+        <br><br>
+
+        <h2><span th:text="${msg}"> </span></h2>
+        <br><br>
+	
+		<div class="In">
+			<p>IN</p>
+			<p><span th:text="${inCard}">IN</span></p>
+		</div>
+		<div class="Out">
+			<p>OUT</p>
+			<p><span th:text="${outCard}">OUT</span></p>
+		</div>
+	</div>
+</body>
+
+</html>
