@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Blog post</title>
+</head>
+<body th:object="${post}">
+    <h1>Post by <span th:text="*{author.name}">John Doe</span></h1>
+    <p th:text="*{content}">This is a post.</p>
+    <p>Likes: <span th:text="${likeCount}">0</span></p>
+    <form method="post" action="#" th:action="@{/forum/post/{id}/like(id = ${post.id})}">
+        <input type="hidden" th:name="likerName" th:value="${likerName}">
+        <input type="submit" value="Like!">
+    </form>
+
+    <!-- Display comments -->
+    <h2>Comments:</h2>
+    <ul>
+        <li th:each="comment : ${comments}">
+            <p th:text="${comment.user.name}">Commenter Name</p>
+            <p th:text="${comment.content}">Comment Content</p>
+        </li>
+    </ul>
+
+    <!-- Form for adding comments -->
+    <form method="post" action="#" th:action="@{/forum/post/{id}/comment(id = ${post.id})}">
+        <input type="hidden" th:name="commenterName" th:value="${likerName}">
+        <textarea name="commentText" rows="4" cols="50" placeholder="Add a comment..."></textarea>
+        <br>
+        <input type="submit" value="Add Comment">
+    </form>
+</body>
+</html>
