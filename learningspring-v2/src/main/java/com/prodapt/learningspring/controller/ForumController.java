@@ -1,8 +1,12 @@
 package com.prodapt.learningspring.controller;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -105,7 +109,13 @@ public class ForumController {
     model.addAttribute("likerName", userDetails.getUsername());
     
     List<Comment> comments = commentRepository.findByPost(post);
-    model.addAttribute("comments", comments);
+    
+    List<Comment> sortedComments = comments.stream()
+            .sorted(Comparator.comparing(Comment::getTimeStamp))
+            .collect(Collectors.toList());
+    
+    model.addAttribute("comments", sortedComments);
+    
     
     int numLikes = likeCRUDRepository.countByLikeIdPost(post);
     model.addAttribute("likeCount", numLikes);
@@ -119,7 +129,14 @@ public class ForumController {
     likeId.setPost(postRepository.findById(id).get());
     LikeRecord like = new LikeRecord();
     like.setLikeId(likeId);
-    likeCRUDRepository.save(like);
+    
+    try {
+    	likeCRUDRepository.save(like);
+    }
+    catch(Exception e) {
+    	return String.format("redirect:/forum/post/%d", id);
+    }
+    
     return String.format("redirect:/forum/post/%d", id);
   }
   
@@ -139,6 +156,7 @@ public class ForumController {
       comment.setPost(postOpt.get());
       comment.setUser(commenterOpt.get());
       comment.setContent(commentText);
+      comment.setTimeStamp(LocalDateTime.now());
 
       commentRepository.save(comment);
 

@@ -1,5 +1,6 @@
 package com.prodapt.learningspring.entity;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,5 +23,15 @@ public class Comment {
     private Post post;
 
     private String content;
+    
+    private LocalDateTime timeStamp;
+    
+    public LocalDateTime getTimeStamp() {
+    	return timeStamp;
+    }
+    
+    public void setTimeStamp(LocalDateTime timeStamp) {
+    	this.timeStamp = timeStamp;
+    }
 
 }
