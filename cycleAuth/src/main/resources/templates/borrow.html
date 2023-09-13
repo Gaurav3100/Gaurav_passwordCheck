@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Borrow Cycles by ID</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        h3 {
+            text-align: center;
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+        }
+
+        table {
+            width: 80%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        form {
+            width: 50%;
+            margin: 20px auto;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        label, select, input, button {
+            display: block;
+            margin: 10px auto;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        select, input[type="number"] {
+            width: 100%;
+            padding: 8px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h3>Borrow Cycles</h3>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Cycle Name</th>
+                <th>Stock Count</th>
+            </tr>
+        </thead>
+        <tbody id="cycleTableBody">
+          
+        </tbody>
+    </table>
+
+    <form id="borrowCycleForm">
+        <label for="cycleId">Select Cycle ID:</label>
+        <select name="cycleId" id="cycleId"></select>
+        <label for="quantity">Quantity to Borrow:</label>
+        <input type="number" name="quantity" id="quantity" placeholder="Quantity" required>
+        <button type="button" onclick="borrowCycle()">Borrow</button>
+    </form>
+
+    <script>
+   
+        function listCycles() {
+            fetch('/api/cycles') 
+                .then(response => response.json())
+                .then(data => {
+                    const cycleTableBody = document.getElementById('cycleTableBody');
+                    cycleTableBody.innerHTML = '';
+
+                    data.forEach(cycle => {
+                        const row = document.createElement('tr');
+                        row.innerHTML = `
+                            <td>${cycle.name}</td>
+                            <td>${cycle.stockCount}</td>
+                        `;
+                        cycleTableBody.appendChild(row);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error fetching cycles:', error);
+                });
+        }
+
+    
+        function borrowCycle() {
+            const cycleId = document.getElementById('cycleId').value;
+            const quantity = document.getElementById('quantity').value;
+
+            fetch('/api/cycles/borrow', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                body: `cycleId=${cycleId}&quantity=${quantity}`,
+            })
+                .then(response => {
+                    if (response.status === 200) {
+                        alert('Borrowed successfully');
+                        listCycles(); 
+                    } else {
+                        alert('Error borrowing cycles');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error borrowing cycles:', error);
+                });
+        }
+
+       
+        listCycles();
+    </script>
+</body>
+</html>

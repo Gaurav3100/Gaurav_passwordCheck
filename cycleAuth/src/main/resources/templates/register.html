@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>TalentSprint cycle shop</title>
+</head>
+<body>
+    <h1>Login!</h1>
+    <form id="registrationForm">
+        <p id="message">Correct username and password</p>
+        <label for="username">Username</label><br>
+        <input type="text" name="username" id="username"><br>
+        <label for="password">Password</label><br>
+        <input type="password" name="password" id="password"><br>
+        <label for="passwordrepeat">Repeat Password</label><br>
+        <input type="password" name="repeatPassword" id="repeatPassword"><br>
+        <input type="button" value="Register" onclick="registerUser()">
+    </form>
+
+    <script>
+        function registerUser() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const repeatPassword = document.getElementById('repeatPassword').value;
+
+            if (password !== repeatPassword) {
+                document.getElementById('message').innerText = "Passwords must match";
+                return;
+            }
+
+            const registrationData = {
+                username: username,
+                password: password,
+                repeatPassword: repeatPassword
+            };
+
+            fetch('/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(registrationData)
+            })
+            .then(response => {
+                if (response.ok) {
+                 
+                    alert('Registration successful!');
+                    window.location.href = '/login'; 
+                } else {
+                   
+                    document.getElementById('message').innerText = 'Registration failed';
+                }
+            })
+            .catch(error => {
+ 
+                console.error('Registration error:', error);
+            });
+        }
+    </script>
+</body>
+</html>
