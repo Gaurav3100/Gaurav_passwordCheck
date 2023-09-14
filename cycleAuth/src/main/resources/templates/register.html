@@ -6,56 +6,14 @@
 </head>
 <body>
     <h1>Login!</h1>
-    <form id="registrationForm">
-        <p id="message">Correct username and password</p>
+    <form method="post" action="#" th:action="@{/api/cycles/register}" th:object="${registrationForm}">
+        <p th:text="${message}">Correct username and password</p>
         <label for="username">Username</label><br>
-        <input type="text" name="username" id="username"><br>
+        <input type="text" name="username" id="username" th:field="*{username}"><br>
         <label for="password">Password</label><br>
-        <input type="password" name="password" id="password"><br>
+        <input type="password" name="password" id="password" th:field="*{password}"><br>
         <label for="passwordrepeat">Repeat Password</label><br>
-        <input type="password" name="repeatPassword" id="repeatPassword"><br>
-        <input type="button" value="Register" onclick="registerUser()">
+        <input type="password" name="repeatPassword" id="repeatPassword" th:field="*{repeatPassword}"><br>
+        <input type="submit" value="Register">
     </form>
-
-    <script>
-        function registerUser() {
-            const username = document.getElementById('username').value;
-            const password = document.getElementById('password').value;
-            const repeatPassword = document.getElementById('repeatPassword').value;
-
-            if (password !== repeatPassword) {
-                document.getElementById('message').innerText = "Passwords must match";
-                return;
-            }
-
-            const registrationData = {
-                username: username,
-                password: password,
-                repeatPassword: repeatPassword
-            };
-
-            fetch('/register', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(registrationData)
-            })
-            .then(response => {
-                if (response.ok) {
-                 
-                    alert('Registration successful!');
-                    window.location.href = '/login'; 
-                } else {
-                   
-                    document.getElementById('message').innerText = 'Registration failed';
-                }
-            })
-            .catch(error => {
- 
-                console.error('Registration error:', error);
-            });
-        }
-    </script>
 </body>
-</html>

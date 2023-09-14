@@ -7,11 +7,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import cycleSpring.cycleAuth.User;
-import cycleSpring.cycleAuth.UserRepository;
 
 @Service
-public class DomianUserService {
+public class DomainUserService {
 
     private static final String ENCODING_STRATEGY = "{bcrypt}";
 
@@ -19,7 +17,7 @@ public class DomianUserService {
     private PasswordEncoder passwordEncoder;
 
     
-    public DomianUserService(@Autowired UserRepository userRepository) {
+    public DomainUserService(@Autowired UserRepository userRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = new BCryptPasswordEncoder();
     }

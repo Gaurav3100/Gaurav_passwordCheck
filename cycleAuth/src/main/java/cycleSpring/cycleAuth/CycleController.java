@@ -19,11 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import cycleSpring.cycleAuth.CycleRepo;
-import cycleSpring.cycleAuth.DomianUserService ;
 import cycleSpring.cycleAuth.DetailRepo;
 
 
 import java.util.List;
+import java.util.Map;
 
 
 
@@ -33,9 +33,10 @@ public class CycleController {
 
     @Autowired
     private CycleRepo cycleRepository;
-    
+
     @Autowired
-    private DomianUserService domainUserService;
+    private DomainUserService domainUserService;
+    
 
     @GetMapping("/cycleList")
     public ResponseEntity<List<CycleEntity>> listCycles() {
@@ -43,10 +44,10 @@ public class CycleController {
         return ResponseEntity.ok(cycles);
     }
 
-    @PostMapping("/incrementStock")
-    public ResponseEntity<CycleEntity> incrementStock(
-            @RequestParam("cycleId") Long cycleId,
-            @RequestParam("quantity") int quantity) {
+    @PostMapping("/cycleList")
+    public ResponseEntity<String> incrementStock(@RequestBody Map<String, Integer> requestData) {
+        Long cycleId = (long) requestData.get("cycleId");
+        int quantity = requestData.get("quantity");
 
         CycleEntity cycle = cycleRepository.findById(cycleId).orElse(null);
 
@@ -54,7 +55,7 @@ public class CycleController {
             int currentStock = cycle.getStockCount();
             cycle.setStockCount(currentStock + quantity);
             cycleRepository.save(cycle);
-            return ResponseEntity.ok(cycle);
+            return ResponseEntity.status(HttpStatus.OK).body("Cycle borrowed successfully");
         } else {
             return ResponseEntity.notFound().build();
         }
@@ -67,9 +68,11 @@ public class CycleController {
     }
 
     @PostMapping("/borrow")
-    public ResponseEntity<?> borrowCycleById(
-            @RequestParam("cycleId") Long cycleId,
-            @RequestParam("quantity") int quantity) {
+    public ResponseEntity<String> borrowCycleById(@RequestBody Map<String, Integer> requestData) {
+        Long cycleId = (long) requestData.get("cycleId");
+        int quantity = requestData.get("quantity");
+    	System.out.println(cycleId);
+    	System.out.println(quantity);
 
         CycleEntity cycle = cycleRepository.findById(cycleId).orElse(null);
 
@@ -78,7 +81,7 @@ public class CycleController {
             if (currentStock >= quantity) {
                 cycle.setStockCount(currentStock - quantity);
                 cycleRepository.save(cycle);
-                return ResponseEntity.ok(cycle);
+                return ResponseEntity.status(HttpStatus.OK).body("Cycle borrowed successfully");
             } else {
                 return ResponseEntity.badRequest().body("Stock Empty");
             }
@@ -92,25 +95,32 @@ public class CycleController {
         List<CycleEntity> cycles = cycleRepository.findAll();
         return ResponseEntity.ok(cycles);
     }
+
+  
+    // // @GetMapping("/register")
+    // //     public ResponseEntity<String> getRegistrationPage() {
+    // //         return ResponseEntity.ok("Registration page"); 
+    // //     }
+    // @GetMapping("/register")
+    //     public String getRegistrationPage() {
+    //         return "register";
+    //     }
+
+    // @PostMapping("/register")
+    // public ResponseEntity<String> register(@RequestBody RegistrationForm registrationForm) {
+    //     if (!registrationForm.isValid()) {
+    //         return ResponseEntity.badRequest().body("Passwords must match");
+    //     }
     
-    @GetMapping("/register")
-    public ResponseEntity<RegistrationForm> getRegistrationForm() {
-        return ResponseEntity.ok(new RegistrationForm());
-    }
-
-    @PostMapping("/register")
-    public ResponseEntity<String> register(@RequestBody RegistrationForm registrationForm) {
-        if (!registrationForm.isValid()) {
-            return ResponseEntity.badRequest().body("Passwords must match");
-        }
-
-        User registeredUser = domainUserService.save(registrationForm.getUsername(), registrationForm.getPassword());
-
-        if (registeredUser != null) {
-            return ResponseEntity.ok("Registration successful");
-        } else {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Registration failed");
-        }
-    }
+    //     User registeredUser = domainUserService.save(registrationForm.getUsername(), registrationForm.getPassword());
+    
+    //     if (registeredUser != null) {
+    //         return ResponseEntity.ok("Registration successful");
+    //     } else {
+    //         return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Registration failed");
+    //     }
+    // }
+    
+    
 }
 

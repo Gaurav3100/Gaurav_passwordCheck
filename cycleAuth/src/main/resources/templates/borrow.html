@@ -99,7 +99,7 @@
     <script>
    
         function listCycles() {
-            fetch('/api/cycles') 
+            fetch('http://localhost:8080/api/cycles/borrow') 
                 .then(response => response.json())
                 .then(data => {
                     const cycleTableBody = document.getElementById('cycleTableBody');

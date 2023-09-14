@@ -33,7 +33,7 @@
         
         function listCycles() {
             $.ajax({
-                url: 'http://localhost:8080/api/cycles/list',
+                url: 'http://localhost:8080/api/cycles/cycleList',
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
@@ -63,7 +63,7 @@
             var quantity = $('#quantity').val();
 
             $.ajax({
-                url: 'incrementStock',
+                url: 'http://localhost:8080/api/cycles/incrementStock',
                 type: 'POST',
                 data: {
                     cycleId: cycleId,
