@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Cycle Store</h2>
+    <div *ngFor="let cycle of cycles">
+        {{ cycle.name }} - Stock Count: {{ cycle.stockCount }}
+        <button (click)="borrowCycle(cycle.id, 1)">Borrow</button>
+        <button (click)="returnCycle(cycle.id, 1)">Return</button>
+        <button (click)="reStockCycle(cycle.id, 1)">ReStock</button>
+    </div>  
+    <br>
+    <a routerLink="/restock">Restock</a>   
+     <router-outlet></router-outlet>          
+</body>
+</html>
