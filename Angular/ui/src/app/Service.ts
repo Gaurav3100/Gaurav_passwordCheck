@@ -9,6 +9,18 @@ export class CycleService {
 
   constructor(private httpClient: HttpClient) { }
 
+  getAllCartCycles(): Observable<any> {
+    return this.httpClient.get('http://localhost:8080/api/cycles/cartList');
+  }
+
+  addCycleCart(cycleId: number, quantity: number): Observable<any> {
+    const requestData = {
+      cycleId: cycleId,
+      quantity: quantity
+    };
+    return this.httpClient.post('http://localhost:8080/api/cycles/cartAdd', requestData);
+  }
+
   getAllCycles(): Observable<any> {
     return this.httpClient.get('http://localhost:8080/api/cycles/list');
   }
@@ -34,7 +46,7 @@ export class CycleService {
       cycleId: cycleId,
       quantity: quantity
     };
-    return this.httpClient.post('http://localhost:8080/api/cycles/cycleList', requestData);
+    return this.httpClient.post('http://localhost:8080/api/cycles/restock', requestData);
   }
 }
 

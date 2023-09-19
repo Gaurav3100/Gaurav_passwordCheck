@@ -5,25 +5,18 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
-import org.springframework.security.config.annotation.authentication.configurers.userdetails.DaoAuthenticationConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configurers.oauth2.server.resource.OAuth2ResourceServerConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.factory.PasswordEncoderFactories;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.JwtEncoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.oauth2.server.resource.web.BearerTokenAuthenticationEntryPoint;
 import org.springframework.security.oauth2.server.resource.web.access.BearerTokenAccessDeniedHandler;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
 import static org.springframework.security.config.Customizer.withDefaults;
 
@@ -68,11 +61,11 @@ public class BasicConfiguration {
         http
             .csrf(csrf -> csrf.disable())
             .authorizeHttpRequests((requests) -> requests
-            .requestMatchers("/register", "/api/auth/token","/api/cycles/list","/api/cycles/borrow","/api/cycles/cycleList","/api/cycles/return").permitAll()
+            .requestMatchers("/register", "/api/auth/token","/api/cycles/list","/api/cycles/borrow","/api/cycles/restock","/api/cycles/return","/api/cycles/cartAdd","/api/cycles/cartList").permitAll()
             .anyRequest().authenticated())
             .logout(withDefaults())
             .httpBasic(withDefaults())
-            //.formLogin(withDefaults())
+            .formLogin(withDefaults())
             .oauth2ResourceServer(
                 oauth2ResourceServer -> oauth2ResourceServer.jwt(jwt -> 
                                                                     jwt.decoder(jwtDecoder())))

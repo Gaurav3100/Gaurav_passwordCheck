@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cycle-Restock</title>
+</head>
+<body>
+
+    <div class="container">
+        <h3>Cycles-Restock</h3>
+        <div *ngFor="let cycle of cycles" class="cycle-card">
+            <div class="cycle-details">
+                <p>{{ cycle.name }}</p>
+                <p>Stock Count: {{ cycle.stockCount }}</p>
+            </div>
+        </div>
+        <div class="buttons">
+            <label for="id">Cycle-Id: </label>
+            <input type="number" [(ngModel)]="cycleId" placeholder="Enter Id">
+            <label for="id">  Quantity: </label>
+            <input type="number" [(ngModel)]="quantity" placeholder="Enter quantity">
+            <button (click)="reStockCycle()">ReStock</button>
+        </div>
+    </div>
+</body>
+</html>
