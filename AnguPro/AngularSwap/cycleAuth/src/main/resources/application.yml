@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: 'jdbc:mysql://localhost:3306/cycleShop'
-    username: prodapt
-    password: gaurav@123
+    url: 'jdbc:mysql://localhost:3306/GauravsCycle'
+    username: Ameena
+    password: Ameena
   jpa:
     properties:
       hibernate:

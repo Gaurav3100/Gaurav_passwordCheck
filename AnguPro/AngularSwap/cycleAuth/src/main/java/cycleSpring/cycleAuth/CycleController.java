@@ -136,8 +136,10 @@ public class CycleController {
                     cartItem = new CycleBasketEntity();
                     cartItem.setCycle(cycle);
                     cartItem.setQuantity(quantityToAdd);
+                    cartItem.setSubTotal((cycle.getPrice())*(cartItem.getQuantity()));
                 } else {
                     cartItem.setQuantity(cartItem.getQuantity() + quantityToAdd);
+                    cartItem.setSubTotal((cycle.getPrice())*(cartItem.getQuantity()));
                 }
     
                 basketRepository.save(cartItem);

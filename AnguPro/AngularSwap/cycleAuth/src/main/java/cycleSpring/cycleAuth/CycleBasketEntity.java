@@ -24,4 +24,39 @@ public class CycleBasketEntity {
     private CycleEntity cycle;
     
     private int quantity;
+    
+    private int subTotal;
+
+	public int getSubTotal() {
+		return subTotal;
+	}
+
+	public void setSubTotal(int subTotal) {
+		this.subTotal = subTotal;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public CycleEntity getCycle() {
+		return cycle;
+	}
+
+	public void setCycle(CycleEntity cycle) {
+		this.cycle = cycle;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+    
 }

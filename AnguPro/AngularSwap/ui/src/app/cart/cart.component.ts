@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CycleService } from '../Service';
+import { Cycle } from '../cycle';
 
 @Component({
   selector: 'app-cart',
@@ -8,7 +9,8 @@ import { CycleService } from '../Service';
 })
 export class CartComponent implements OnInit{
 
-  cartCycles:any;
+  cartCycles:any; 
+  
 
   constructor(private cycleService: CycleService) { }
 

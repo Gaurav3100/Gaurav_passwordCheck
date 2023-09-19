@@ -24,12 +24,47 @@ public class CycleEntity {
     private int stockCount;
 
     private int numBorrowed;
+    
+    private int price;
 
-    public int getStockCount() {
+    public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getStockCount() {
     	return this.stockCount;
     }
     
     public void setStockCount(int count) {
     	this.stockCount = count;
+    	
     }
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getNumBorrowed() {
+		return numBorrowed;
+	}
+
+	public void setNumBorrowed(int numBorrowed) {
+		this.numBorrowed = numBorrowed;
+	}
 }

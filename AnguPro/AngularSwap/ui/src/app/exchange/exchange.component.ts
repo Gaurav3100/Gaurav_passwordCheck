@@ -12,6 +12,7 @@ export class ExchangeComponent implements OnInit{
   message: any;
   cycleId: any;
   quantity: any;
+  price: any;
   cartCycles: any;
 
   constructor(private cycleService: CycleService) { }

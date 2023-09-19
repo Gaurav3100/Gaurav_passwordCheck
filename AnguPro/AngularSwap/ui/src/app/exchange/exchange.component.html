@@ -13,6 +13,7 @@
             <div class="cycle-details">
                 <p>{{ cycle.name }}</p>
                 <p>Stock Count: {{ cycle.stockCount }}</p>
+                <p>Price : {{cycle.price}}</p>
             </div>
             <div class="buttons">
                 <button (click)="borrowCycle(cycle.id, 1)">Borrow</button>
