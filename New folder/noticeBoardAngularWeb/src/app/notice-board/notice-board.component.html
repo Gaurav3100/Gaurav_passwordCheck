@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notice-Board</title>
+</head>
+<body>
+    <div class="input-form">
+        <form (ngSubmit)="addNotice(title, content, contact)">
+            <input type="text" [(ngModel)]="title" name="title" placeholder="Title">
+            <input type="text" [(ngModel)]="contact" name="contact" placeholder="Contact">
+            <textarea [(ngModel)]="content" name="content" placeholder="Content"></textarea>
+            <button type="submit">Add Notice</button>
+        </form>
+    </div>
+    <div class="container">        
+        <div *ngFor="let notice of notices" class="sticky-note">
+            <h3>Title: {{ notice.title }}</h3>
+            <p>Content: {{ notice.content }}</p>
+            <p>Contact: {{ notice.contact }}</p>
+        </div>
+    </div>
+</body>
+</html>
