@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,6 +25,9 @@ public class CycleController {
 
     @Autowired
     private CycleRepo cycleRepository;
+    
+    @Autowired
+    private TransactionRepository transactionRepository;
 
     @Autowired
     private CycleBasketRepo basketRepository;
@@ -121,7 +126,7 @@ public class CycleController {
         Long cycleId = (long) requestData.get("cycleId");
         int quantityToAdd = requestData.get("quantity");
     
-        CycleEntity cycle = cycleRepository.findById(cycleId).orElse(null);
+       CycleEntity cycle = cycleRepository.findById(cycleId).orElse(null);
     
         if (cycle != null) {
             int currentStock = cycle.getStockCount();
@@ -159,6 +164,47 @@ public class CycleController {
         }
     }
     
+    @PostMapping("/addTransaction")
+	@ResponseBody
+	public void newTransaction(@RequestBody Transaction transaction) {
+		transactionRepository.save(transaction);
+	}
+    
+    @PostMapping("/deleteItemFromCart")
+    public ResponseEntity<Map<String, String>> deleteItemFromCart(@RequestBody Map<String, Long> requestData) {
+        Long cycleId = requestData.get("cycleId");
+
+        CycleBasketEntity cartItem = basketRepository.findByCycleId(cycleId);
+
+        if (cartItem != null) {
+            int quantityToRemove = cartItem.getQuantity();
+
+            CycleEntity cycle = cycleRepository.findById(cycleId).orElse(null);
+
+            if (cycle != null) {
+                int currentStock = cycle.getStockCount();
+                cycle.setStockCount(currentStock + quantityToRemove);
+                cycle.setNumBorrowed(cycle.getNumBorrowed() - quantityToRemove);
+                cycleRepository.save(cycle);
+
+                // Remove the item from the cart
+                basketRepository.delete(cartItem);
+
+                Map<String, String> response = new HashMap<>();
+                response.put("message", "Cycle removed from cart and returned to stock successfully");
+
+                return ResponseEntity.status(HttpStatus.OK).body(response);
+            } else {
+                return ResponseEntity.notFound().build();
+            }
+        } else {
+            Map<String, String> response = new HashMap<>();
+            response.put("message", "Item not found in the cart");
+
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(response);
+        }
+    }
+
     
 }
 

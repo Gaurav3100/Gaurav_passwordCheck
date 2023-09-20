@@ -48,6 +48,14 @@ export class CycleService {
     };
     return this.httpClient.post('http://localhost:8080/api/cycles/restock', requestData);
   }
+
+  deleteItem(cycleId: number,quantity:number): Observable<any> {
+    const requestData = {
+      cycleId: cycleId,
+      quantity: quantity
+    };
+    return this.httpClient.post('http://localhost:8080/api/cycles/deleteItemFromCart', requestData);
+  }
 }
 
 
