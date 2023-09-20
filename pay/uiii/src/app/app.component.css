@@ -1,0 +1,74 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #131921; /* Amazon's header background color */
+    color: #fff;
+    text-align: center;
+    padding: 15px 0;
+    font-size: 24px;
+}
+
+.navbar {
+    background-color: #232f3e; /* Amazon's navigation bar background color */
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+.navbar a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+    margin-right: 20px;
+    transition: color 0.3s ease;
+}
+
+.navbar a:last-child {
+    margin-right: 0;
+}
+
+.navbar a:hover {
+    color: #f0c14b; /* Amazon's link hover color */
+}
+
+.sidebar {
+    background-color: #131921; /* Amazon's sidebar background color */
+    color: #fff;
+    width: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidebar a {
+    padding: 16px 32px;
+    text-decoration: none;
+    font-size: 20px;
+    color: #fff;
+    display: block;
+    transition: 0.3s;
+}
+
+.sidebar a:hover {
+    background-color: #f0c14b; /* Amazon's sidebar link hover color */
+    color: #131921; /* Change text color on hover */
+}
+
+.container {
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px;
+}

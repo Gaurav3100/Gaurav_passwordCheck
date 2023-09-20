@@ -19,6 +19,7 @@
         <li th:each="comment : ${comments}">
             <p th:text="${comment.user.name}">Commenter Name</p>
             <p th:text="${comment.content}">Comment Content</p>
+            <p th:text="${#temporals.format(comment.timeStamp, 'dd-MM-yyyy HH:mm:ss')}">Timestamp</p>
         </li>
     </ul>
 
@@ -29,5 +30,7 @@
         <br>
         <input type="submit" value="Add Comment">
     </form>
+
+
 </body>
 </html>

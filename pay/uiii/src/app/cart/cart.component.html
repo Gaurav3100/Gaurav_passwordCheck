@@ -1,0 +1,23 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cycle-Restock</title>
+</head>
+<body>
+
+    <div class="container">
+        <h3>Cycles-Added</h3>
+        <div *ngFor="let cycle of cartCycles" class="cycle-card">
+            <div class="cycle-details">
+                <p>{{ cycle.cycle.name }}</p>
+                <p>Quantity: {{ cycle.quantity }}</p>
+                <p>Price per: {{ cycle.cycle.price }}</p>
+            </div>
+        </div>
+        <button routerLink="/payment">Go to Payment</button>
+    </div>
+</body>
+</html>

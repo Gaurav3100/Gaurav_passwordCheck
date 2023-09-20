@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cycle-Restock</title>
+</head>
+<body>
+
+    <div class="container">
+        <h3>Cycles-Added</h3>
+        <div *ngFor="let cycle of cartCycles" class="cycle-card">
+            <div class="cycle-details">
+                <p>{{ cycle.cycle.name }}</p>
+                <p>Quantity: {{ cycle.quantity }}</p>
+                <p>Sub Total: {{cycle.cycle.price*cycle.quantity}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="transaction-form">
+        <h2>Add New Transaction</h2>
+        <form (ngSubmit)="onSubmit()">
+            <div>
+                <label for="name">
+                  Name
+                </label>
+                <input id="username" type="text" name="username" [(ngModel)]="username">
+              </div>
+          
+          <!-- <div class="form-group">
+            <label for="totalPrice">Total Price</label>
+            <input type="number" id="totalPrice" name="totalPrice" [(ngModel)]="totalPrice" required>
+          </div> -->
+          <!-- <div class="form-group">
+            <label for="purchasedTime">Purchased Time</label>
+            <input type="date" id="purchasedTime" name="purchasedTime" [(ngModel)]="transaction.purchasedTime" required>
+          </div> -->
+          <!-- <div class="form-group">
+            <label for="items">Items</label>
+            <input type="text" id="items" name="items" [(ngModel)]="items" required>
+          </div> -->
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+      
+    <!-- <div>
+        <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+            <div>
+                <label for="name">
+                  Name
+                </label>
+                <input id="name" type="text" formControlName="name">
+              </div>
+            <button class="button" type="submit">Purchase</button>
+        </form>
+    </div> -->
+</body>
+</html>
