@@ -1,0 +1,31 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student List</title>
+</head>
+<body>
+    <div>
+        <h1>Student Details</h1>
+        <table>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Date of Birth</th>
+            <th>Course</th>
+            <th>Fees</th>
+            <th>Age</th>
+          </tr>
+          <tr *ngFor="let student of students">
+            <td>{{ student.Sid }}</td>
+            <td>{{ student.Sname }}</td>
+            <td>{{ student.dob | date:'mediumDate' }}</td>
+            <td>{{ student.course }}</td>
+            <td>{{ student.fees | currency:'INR' }}</td>
+            <td>{{ student.dob | age }}</td>
+          </tr>
+        </table>
+      </div>
+      
+</body>
+</html>
