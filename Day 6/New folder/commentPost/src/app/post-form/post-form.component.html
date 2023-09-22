@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Post</title>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Select Post</h1>
+        <form>
+            <input type="number" [(ngModel)]="postId" name="postId" placeholder="Enter Post ID" required>
+            <button (click)="getPost()">See Post</button>
+         </form>
+    </div>
+</body>
+</html>
