@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Your Cart</h2>
+        <div class="cart-items">
+            <div *ngFor="let cycle of cartCycles" class="cart-item">
+                <div class="item-details">
+                  <p class="item-name">{{ cycle.cycle.name }}</p>
+                  <p class="item-quantity">Quantity: {{ cycle.quantity }}</p>
+                  <p class="item-price">Price per item: Rs. {{ cycle.cycle.price }}</p>
+                </div>
+                <p class="item-total-price">Total: Rs. {{ cycle.cycle.price * cycle.quantity }}</p>
+                <button (click)="removeItemFromCart(cycle.cycle.id, 1)" class="rmbtn">Remove Item</button>
+              </div>
+        </div>
+        <button routerLink="/payment" class="checkout-button" [disabled]="isCartEmpty">Go to Payments</button>
+    </div>
+</body>
+</html>

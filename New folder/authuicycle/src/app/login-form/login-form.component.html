@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-box">
+            <h3>Login</h3>
+            <form>
+                <label for="username">Username:</label>
+                <input type="text" name="username" id="username" [(ngModel)]="username" required>
+
+                <label for="password">Password:</label>
+                <input type="password" name="password" id="password" [(ngModel)]="password" required>
+
+                <button type="button" (click)="login()">Login</button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+</head>
+<body>
+    <div class="container">
+        <h2>Order Summary</h2>
+        <div class="order-summary">
+            <div *ngFor="let cycle of cartCycles" class="product">
+
+                <div class="product-details">
+                    <p class="product-name">{{ cycle.cycle.name }}</p>
+                    <p class="product-quantity">Quantity: {{ cycle.quantity }}</p>
+                </div>
+                <p class="product-price">Rs. {{ cycle.cycle.price * cycle.quantity }}</p>
+            </div>
+        </div>
+        <div class="total">
+            <p>Total Payment: Rs. {{ totalPayment }}</p>
+        </div>
+        <button routerLink="/ordercom" (click)="onProceedToCheckoutClick()">Proceed to Checkout</button>
+
+    </div>
+</body>
+</html>

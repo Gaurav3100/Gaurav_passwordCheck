@@ -1,0 +1,81 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+    margin: 0;
+    padding: 0;
+}
+
+.he {
+    background-color: #adc4e0;
+    color: #fff;
+    padding: 20px;
+}
+
+.container {
+    max-width: 700px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+}
+
+.response{
+    text-align: center;
+    color: red;
+}
+
+h3 {
+    text-align: center;
+    font-size: 28px;
+    color: #111;
+}
+
+.cycle-card {
+    background-color: #fff;
+    padding: 20px;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.cycle-details {
+    text-align: left;
+}
+
+.cycle-details p {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #333;
+}
+
+.buttons {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.input-container{
+    text-align: center;
+}
+
+button {
+    background-color: #f0c14b; 
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    padding: 8px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
+    transition: background-color 0.3s ease;
+    margin-left: 10px;
+}
+
+input{
+    margin-left: 10px;
+}
+
+button:hover {
+    background-color: #d8a009; 
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cycle-Exchange</title>
+</head>
+<body>
+    <div class="he">
+    <h3>Cycle-Exchange</h3>
+    </div>
+
+    <div class="container">
+        <div *ngFor="let cycle of cycles" class="cycle-card">
+            <div class="cycle-details">
+                <p><b>{{ cycle.name }}</b></p>
+                <p>Stock Count: {{ cycle.stockCount }}</p>
+                <p>Borrowed: {{cycle.numBorrowed}}</p>
+            </div>
+        </div>
+
+
+        <div class="container">
+            <div class="input-container">
+              <input type="number" placeholder="Cycle ID" [(ngModel)]="cycleId">
+              <input type="number" placeholder="Quantity" [(ngModel)]="quantity">
+              <button (click)="borrowCycle()">Borrow</button>
+              <button (click)="returnCycle()">Return</button>
+              <button (click)="addCycleCart()">Cart</button>
+            </div>
+        </div>
+          
+        <div class="response" *ngIf="message">
+            {{ message }}
+        </div>
+        
+    </div>
+</body>
+</html>
